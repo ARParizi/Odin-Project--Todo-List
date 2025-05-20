@@ -51,7 +51,6 @@ main {
   position: absolute;
   right: 3px;
   bottom: 3px;
-  margin-left: 10px;
   font-size: 1.0em;
 }
 
@@ -72,5 +71,19 @@ main {
 }
 
 #add-project-button:hover {
+  background-color: hsl(210, 29%, 45%);
+}
+
+#add-todo-button {
+  align-self: center;
+  font-size: 1.0em;
+  /* border-radius: 5px; */
+  border-width: 1px;
+  padding: 4px 20px;
+  color: white;
+  background-color: hsl(210, 29%, 35%);
+}
+
+#add-todo-button:hover {
   background-color: hsl(210, 29%, 45%);
 }
