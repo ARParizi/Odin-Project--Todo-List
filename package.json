@@ -1,0 +1,30 @@
+{
+  "name": "odin-project--todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open --config webpack.dev.js",
+    "prebuild": "echo BUILDING...",
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack serve",
+    "deploy": "git subtree push --prefix dist origin gh-pages",
+    "lint": "eslint",
+    "lint-file": "npm run lint -- -f json > lint-results.json",
+    "clean": "rm -rf dist node_modules package-lock.json",
+    "install-lint-dependencies": "npm install --save-dev eslint eslint-plugin-import eslint-plugin-n eslint-plugin-promise",
+    "install-webpack-dependencies": "npm install --save-dev webpack-merge webpack-dev-server webpack-cli webpack style-loader html-webpack-plugin css-loader"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARParizi/Odin-Project--Todo-List.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ARParizi/Odin-Project--Todo-List/issues"
+  },
+  "homepage": "https://github.com/ARParizi/Odin-Project--Todo-List#readme"
+}
