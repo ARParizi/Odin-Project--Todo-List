@@ -20,7 +20,7 @@ html, body {
 
 .sidebar {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   background-color: hsl(210, 29%, 24%);
   color: white;
   padding: 20px;
@@ -38,9 +38,18 @@ html, body {
 }
 
 #project-list li {
+  position: relative;
   padding: 5px;
 }
 
 #project-list li:hover {
   background-color: hsl(210, 29%, 35%);
+}
+
+.delete-project-button {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    margin-left: 10px;
+    font-size: 1.0em;
 }
