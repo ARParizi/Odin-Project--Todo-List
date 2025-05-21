@@ -1,12 +1,12 @@
 // import './styles.css';
-import { ManagedArray } from "./managedArray";
+import { ManagedArray } from "./managedArray.js";
 
 console.log("Hello World from the Todo List project.");
 
-if (process.env.NODE_ENV === 'production')
-    console.log("We're in production mode!");
-else
-    console.log("We're in development mode.");
+// if (process.env.NODE_ENV === 'production')
+//     console.log("We're in production mode!");
+// else
+//     console.log("We're in development mode.");
 
 const PRIORITY = Object.freeze({
     LOW: 'LOW',
@@ -33,4 +33,49 @@ class Project {
     }
 }
 
-const projectList = new ManagedArray(Project);
+const projectArray = new ManagedArray(Project);
+
+projectArray.addItem(new Project('Project 5'));
+projectArray.addItem(new Project('Project 6'));
+projectArray.addItem(new Project('Project 7'));
+projectArray.addItem(new Project('Project 8'));
+
+
+
+
+
+renderProjectList();
+function renderProjectList(){
+    const projectList = document.querySelector('#project-list');
+    const projectArrayCopy = projectArray.getArray();
+
+    if (projectArrayCopy.length === 0)
+        projectList.replaceChildren('');
+
+    for (let ii = 0; ii < projectArrayCopy.length; ii++){
+        const newLi   = document.createElement('li');
+        const newSpan = document.createElement('span');
+        const newBtn  = document.createElement('button');
+        
+        newSpan.textContent = projectArrayCopy[ii].title;
+        newLi.appendChild(newSpan);
+        
+        newBtn.textContent = 'delete';
+        newBtn.type = 'button';
+        newBtn.setAttribute('data-id', projectArrayCopy[ii].id.toString());
+        newBtn.classList.add('delete-project-button');
+        newBtn.addEventListener('click', deleteProjectClicked);
+        newLi.appendChild(newBtn);
+        if (ii === 0)
+            projectList.replaceChildren(newLi);
+        else
+            projectList.appendChild(newLi);
+    }
+}
+    
+
+function deleteProjectClicked(event){
+    const id = this.dataset.id;
+    projectArray.removeItemById(id);
+    renderProjectList();
+}

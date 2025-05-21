@@ -5,9 +5,9 @@ export class ManagedArray {
     }
     #array;
     addItem(item) {
-        if (typeof item !== this.type)
+        if (!item instanceof this.type)
             throw new Error("Wrong type in function addItem");
-        this.#array.push();
+        this.#array.push(item);
     }
     removeItemById(itemId) {
         for (let ii = 0; ii < this.#array.length; ii++) {
