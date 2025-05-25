@@ -35,10 +35,10 @@ class Project {
 
 const projectArray = new ManagedArray(Project);
 
-projectArray.addItem(new Project('Project 5'));
-projectArray.addItem(new Project('Project 6'));
-projectArray.addItem(new Project('Project 7'));
-projectArray.addItem(new Project('Project 8'));
+projectArray.addItem(new Project('Project 1'));
+projectArray.addItem(new Project('Project 2'));
+projectArray.addItem(new Project('Project 3'));
+projectArray.addItem(new Project('Project 4'));
 
 
 
@@ -54,11 +54,9 @@ function renderProjectList(){
 
     for (let ii = 0; ii < projectArrayCopy.length; ii++){
         const newLi   = document.createElement('li');
-        const newSpan = document.createElement('span');
         const newBtn  = document.createElement('button');
         
-        newSpan.textContent = projectArrayCopy[ii].title;
-        newLi.appendChild(newSpan);
+        newLi.textContent = projectArrayCopy[ii].title;
         
         newBtn.textContent = 'delete';
         newBtn.type = 'button';
