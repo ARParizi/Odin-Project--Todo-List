@@ -102,6 +102,7 @@ main {
 }
 
 .todo-item {
+  white-space: pre-line;
   background-color: lightgray;
   /* width: 200px; */
   /* height: 200px; */

@@ -156,7 +156,6 @@ function renderTodoContainer() {
         const deleteBtn = document.createElement('button');
         
         newDiv.classList.add('todo-item');
-        newDiv.style.whiteSpace = 'pre-line';
         newDiv.textContent  = 'Title:  ';
         newDiv.textContent += todoArray[ii].title;
         newDiv.textContent += '\nDescription:  ';
