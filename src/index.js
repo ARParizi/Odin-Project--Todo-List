@@ -34,6 +34,9 @@ class Project {
 }
 
 const projectArray = new ManagedArray(Project);
+let currentProjectId;
+const getCurrentProject = () => projectArray.getItemById(currentProjectId);
+
 
 projectArray.addItem(new Project('default'));
 
@@ -100,3 +103,27 @@ const addTodoDialog = document.querySelector('#add-todo-dialog');
 const addTodoForm   = addTodoDialog.querySelector('form');
 
 addTodoButton.addEventListener('click', () => addTodoDialog.showModal());
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dialog = document.getElementById("taskDialog");
+  const form = dialog.querySelector("form");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default dialog form behavior
+
+    const formData = new FormData(form);
+
+    const taskData = {
+      title: formData.get("title").trim(),
+      description: formData.get("description").trim(),
+      priority: formData.get("priority"),
+      dueDate: formData.get("due_date"),
+      completed: formData.get("completed") === "on",
+    };
+    dialog.close();
+    form.reset();
+  });
+});

@@ -18,5 +18,13 @@ export class ManagedArray {
         }
         throw new Error ("item to remove not found");
     }
+    getItemById(itemId) {
+        for (let ii = 0; ii < this.#array.length; ii++) {
+            if (this.#array[ii].id === itemId) {
+                return this.#array[ii];
+            }
+        }
+        throw new Error ("item to return not found");
+    }
     getArray = () => this.#array.map(i => i);
 }
