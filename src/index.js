@@ -35,14 +35,7 @@ class Project {
 
 const projectArray = new ManagedArray(Project);
 
-projectArray.addItem(new Project('Project 1'));
-projectArray.addItem(new Project('Project 2'));
-projectArray.addItem(new Project('Project 3'));
-projectArray.addItem(new Project('Project 4'));
-
-
-
-
+projectArray.addItem(new Project('default'));
 
 renderProjectList();
 function renderProjectList(){
@@ -76,4 +69,27 @@ function deleteProjectClicked(event){
     const id = this.dataset.id;
     projectArray.removeItemById(id);
     renderProjectList();
+}
+
+
+const addProjectButton = document.querySelector('#add-project-button');
+const addProjectDialog = document.querySelector('#add-project-dialog');
+const addProjectForm   = addProjectDialog.querySelector('form');
+
+addProjectButton.addEventListener('click', () => addProjectDialog.showModal());
+addProjectForm  .addEventListener('submit', addProjectFormSubmit);
+
+function addProjectFormSubmit(event) {
+    event.preventDefault();
+    const title = this.title.value.trim();
+
+    if (title === '')
+        throw new Error('new project title is empty');
+
+    projectArray.addItem(new Project(title))
+    renderProjectList();
+
+    addProjectDialog.close();
+    
+    this.reset();
 }

@@ -11,7 +11,7 @@
         <aside class="sidebar">
             <h2>Projects</h2>
             <ul id="project-list"></ul>
-            <div id="add-project-button-container"><button id="add-project-button">Add Project</button></div>
+            <div id="add-project-button-container"><button id="add-project-button" type="button">Add Project</button></div>
         </aside>
         <main>
             <h2>Project 1</h2>
@@ -20,6 +20,20 @@
             <button id="add-todo-button">Add Todo</button>
         </main>
     </div>
+
+    <dialog id="add-project-dialog">
+        <form method="dialog" id="add-project-form">
+            <label for="add-project-title">
+                Title<span class="required-asterisk">*</span>
+            </label>
+            <input type="text" id="add-project-title" name="title" required>
+
+            <div class="button-row">
+                <button type="submit" class="form-submit">Submit</button>
+                <button type="button" class="cancel-btn" onclick="document.getElementById('add-project-dialog').close()">Cancel</button>
+            </div>
+        </form>
+    </dialog>
     <script src="index.js" type="module"></script> <!--Temporary for dev-->
 </body>
 </html>
