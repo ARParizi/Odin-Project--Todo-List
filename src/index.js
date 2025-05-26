@@ -61,15 +61,27 @@ function renderProjectList(){
         newBtn.classList.add('delete-project-button');
         newBtn.addEventListener('click', deleteProjectClicked);
         newLi.appendChild(newBtn);
+        newLi.setAttribute('data-id', projectArrayCopy[ii].id.toString());
+        newLi.addEventListener('click', liClicked);
         if (ii === 0)
             projectList.replaceChildren(newLi);
         else
             projectList.appendChild(newLi);
     }
 }
+
+function liClicked() {
+    const id = this.dataset.id;
+    console.log(`list item clicked, project id: ${id}`);
+    currentProjectId = id;
+    const currentProjectHeading = document.querySelector('#current-project-heading');
+    currentProjectHeading.textContent = getCurrentProject().title;
+    renderTodoContainer();
+}
     
 
 function deleteProjectClicked(event){
+    event.stopPropagation();
     const id = this.dataset.id;
     projectArray.removeItemById(id);
     renderProjectList();
@@ -126,12 +138,53 @@ function addTodoFormSubmit(event) {
                                                     todoData.dueDate,
                                                     todoData.priority,
                                                     todoData.completed))
-    renderTodoList();
+    renderTodoContainer();
 
     addTodoDialog.close();
     this.reset();
 }
 
-function renderTodoList() {
-    console.log(getCurrentProject().todos);
+function renderTodoContainer() {
+    const todoContainer = document.querySelector('#todo-container');
+    const todoArray = getCurrentProject().todos.getArray();
+
+    if (todoArray.length === 0)
+        todoContainer.replaceChildren('');
+
+    for (let ii = 0; ii < todoArray.length; ii++){
+        const newDiv    = document.createElement('div');
+        const deleteBtn = document.createElement('button');
+        
+        newDiv.classList.add('todo-item');
+        newDiv.style.whiteSpace = 'pre-line';
+        newDiv.textContent  = 'Title:  ';
+        newDiv.textContent += todoArray[ii].title;
+        newDiv.textContent += '\nDescription:  ';
+        newDiv.textContent += todoArray[ii].description;
+        newDiv.textContent += '\nDue Date:  ';
+        newDiv.textContent += todoArray[ii].date;
+        newDiv.textContent += '\nPriority:  ';
+        newDiv.textContent += todoArray[ii].priority;
+        newDiv.textContent += '\nCompleted:  ';
+        newDiv.textContent += todoArray[ii].completed;
+        newDiv.textContent += '\n';
+        
+        deleteBtn.textContent = 'delete';
+        deleteBtn.type = 'button';
+        deleteBtn.setAttribute('data-id', todoArray[ii].id.toString());
+        deleteBtn.classList.add('delete-todo-button');
+        deleteBtn.addEventListener('click', deleteTodoClicked);
+        newDiv.appendChild(deleteBtn);
+
+        if (ii === 0)
+            todoContainer.replaceChildren(newDiv);
+        else
+            todoContainer.appendChild(newDiv);
+    }
+}
+
+function deleteTodoClicked(event) {
+    const todoId = this.dataset.id;
+    getCurrentProject().todos.removeItemById(todoId);
+    renderTodoContainer();
 }

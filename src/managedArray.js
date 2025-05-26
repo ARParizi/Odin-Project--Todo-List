@@ -27,4 +27,8 @@ export class ManagedArray {
         throw new Error ("item to return not found");
     }
     getArray = () => this.#array.map(i => i);
+
+    get length(){
+        return this.#array.length;
+    }
 }

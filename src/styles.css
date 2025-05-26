@@ -83,6 +83,11 @@ main {
   background-color: hsl(210, 29%, 35%);
 }
 
+.delete-todo-button {
+  font-size: 1.0em;
+  padding: 4px 10px;
+}
+
 #add-todo-button:hover {
   background-color: hsl(210, 29%, 45%);
 }
@@ -102,8 +107,9 @@ main {
   /* height: 200px; */
   overflow: auto;
   padding: 10px;
-  border-left: solid 10px gold;
+  border-left: solid 10px lightcoral;
   border-radius: 5px;
+  font-size: 1.15em;
 }
 
 dialog::backdrop {
