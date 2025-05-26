@@ -15,7 +15,7 @@ const PRIORITY = Object.freeze({
 });
 
 class TodoItem {
-    constructor(title, description, date, priority, completed, projectId) {
+    constructor(title, description, date, priority, completed) {
         this.title       = title;
         this.description = description;
         this.date        = date;
@@ -34,11 +34,12 @@ class Project {
 }
 
 const projectArray = new ManagedArray(Project);
-let currentProjectId;
+const defaultProject = new Project('default project');
+projectArray.addItem(defaultProject);
+
+let currentProjectId = defaultProject.id;
 const getCurrentProject = () => projectArray.getItemById(currentProjectId);
 
-
-projectArray.addItem(new Project('default'));
 
 renderProjectList();
 function renderProjectList(){
@@ -93,7 +94,6 @@ function addProjectFormSubmit(event) {
     renderProjectList();
 
     addProjectDialog.close();
-    
     this.reset();
 }
 
@@ -103,27 +103,35 @@ const addTodoDialog = document.querySelector('#add-todo-dialog');
 const addTodoForm   = addTodoDialog.querySelector('form');
 
 addTodoButton.addEventListener('click', () => addTodoDialog.showModal());
+addTodoForm  .addEventListener('submit', addTodoFormSubmit);
 
+function addTodoFormSubmit(event) {
+    event.preventDefault();
 
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const dialog = document.getElementById("taskDialog");
-  const form = dialog.querySelector("form");
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent default dialog form behavior
-
-    const formData = new FormData(form);
-
-    const taskData = {
-      title: formData.get("title").trim(),
+    const formData = new FormData(this);
+    const todoData = {
+      title      : formData.get("title").trim(),
       description: formData.get("description").trim(),
-      priority: formData.get("priority"),
-      dueDate: formData.get("due_date"),
-      completed: formData.get("completed") === "on",
+      priority   : formData.get("priority"),
+      dueDate    : formData.get("due-date"),
+      completed  : formData.get("completed") === "on",
     };
-    dialog.close();
-    form.reset();
-  });
-});
+    
+    if (todoData.title === '')
+        throw new Error('new todo title is empty');
+
+    getCurrentProject().todos.addItem(new TodoItem(
+                                                    todoData.title,
+                                                    todoData.description,
+                                                    todoData.dueDate,
+                                                    todoData.priority,
+                                                    todoData.completed))
+    renderTodoList();
+
+    addTodoDialog.close();
+    this.reset();
+}
+
+function renderTodoList() {
+    console.log(getCurrentProject().todos);
+}
