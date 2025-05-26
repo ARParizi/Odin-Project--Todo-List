@@ -93,3 +93,10 @@ function addProjectFormSubmit(event) {
     
     this.reset();
 }
+
+
+const addTodoButton = document.querySelector('#add-todo-button');
+const addTodoDialog = document.querySelector('#add-todo-dialog');
+const addTodoForm   = addTodoDialog.querySelector('form');
+
+addTodoButton.addEventListener('click', () => addTodoDialog.showModal());

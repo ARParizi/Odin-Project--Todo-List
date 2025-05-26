@@ -123,30 +123,47 @@ dialog {
   padding: 20px;
   background-color: white;
 }
+
 form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
+
 label {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
   font-weight: bold;
 }
+
 .required-asterisk {
   color: red;
   margin-left: 4px;
 }
-input[type="text"] {
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 20px;
 }
+
+textarea {
+  resize: vertical;
+  min-height: 60px; /* Approx. 3 lines */
+}
+
 .button-row {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
+
 button.form-submit {
   padding: 8px 16px;
   font-size: 14px;
@@ -154,10 +171,12 @@ button.form-submit {
   border-radius: 4px;
   cursor: pointer;
 }
+
 button[type="submit"] {
   background-color: #4CAF50;
   color: white;
 }
+
 button.cancel-btn {
   padding: 8px 16px;
   font-size: 14px;
@@ -166,4 +185,8 @@ button.cancel-btn {
   cursor: pointer;
   background-color: #f44336;
   color: white;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
 }
