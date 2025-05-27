@@ -78,8 +78,7 @@ function deleteProjectClicked(event){
     renderProjectList();
     
     if(currentProjectId === id){
-        const projectArrayCopy = projectArray.getArray();
-        changeCurrentProject(projectArrayCopy[projectArrayCopy.length - 1].id);
+        changeCurrentProject(projectArray.getLastItem().id);
     }
 }
 
