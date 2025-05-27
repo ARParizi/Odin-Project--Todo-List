@@ -108,6 +108,7 @@ function addProjectFormSubmit(event) {
 
     addProjectDialog.close();
     this.reset();
+    changeCurrentProject(projectArray.getLastItem().id);
 }
 
 
