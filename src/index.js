@@ -189,7 +189,7 @@ function renderTodoContainer() {
     }
 }
 
-function deleteTodoClicked(event) {
+function deleteTodoClicked() {
     const todoId = this.dataset.id;
     getCurrentProject().todos.removeItemById(todoId);
     renderTodoContainer();

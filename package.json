@@ -29,6 +29,10 @@
   "homepage": "https://github.com/ARParizi/Odin-Project--Todo-List#readme",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "eslint": "^9.27.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.18.0",
+    "eslint-plugin-promise": "^7.2.1",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.99.8",
