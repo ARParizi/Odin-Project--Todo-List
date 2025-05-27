@@ -28,11 +28,18 @@ class Project {
 }
 
 const projectArray = new ManagedArray(Project);
-const defaultProject = new Project('default project');
-projectArray.addItem(defaultProject);
+projectArray.addItem(new Project('default project'));
 
-let currentProjectId = defaultProject.id;
+let currentProjectId;
 const getCurrentProject = () => projectArray.getItemById(currentProjectId);
+
+changeCurrentProject(projectArray.getLastItem().id);
+function changeCurrentProject(newId) {
+    currentProjectId = newId;
+    const currentProjectHeading = document.querySelector('#current-project-heading');
+    currentProjectHeading.textContent = getCurrentProject().title;
+    renderTodoContainer();
+}
 
 
 renderProjectList();
@@ -80,13 +87,6 @@ function deleteProjectClicked(event){
     if(currentProjectId === id){
         changeCurrentProject(projectArray.getLastItem().id);
     }
-}
-
-function changeCurrentProject(newId) {
-    currentProjectId = newId;
-    const currentProjectHeading = document.querySelector('#current-project-heading');
-    currentProjectHeading.textContent = getCurrentProject().title;
-    renderTodoContainer();
 }
 
 const addProjectButton = document.querySelector('#add-project-button');
