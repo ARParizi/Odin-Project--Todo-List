@@ -67,10 +67,7 @@ function renderProjectList(){
 function liClicked() {
     const id = this.dataset.id;
     console.log(`list item clicked, project id: ${id}`);
-    currentProjectId = id;
-    const currentProjectHeading = document.querySelector('#current-project-heading');
-    currentProjectHeading.textContent = getCurrentProject().title;
-    renderTodoContainer();
+    changeCurrentProject(id);
 }
     
 
@@ -79,8 +76,19 @@ function deleteProjectClicked(event){
     const id = this.dataset.id;
     projectArray.removeItemById(id);
     renderProjectList();
+    
+    if(currentProjectId === id){
+        const projectArrayCopy = projectArray.getArray();
+        changeCurrentProject(projectArrayCopy[projectArrayCopy.length - 1].id);
+    }
 }
 
+function changeCurrentProject(newId) {
+    currentProjectId = newId;
+    const currentProjectHeading = document.querySelector('#current-project-heading');
+    currentProjectHeading.textContent = getCurrentProject().title;
+    renderTodoContainer();
+}
 
 const addProjectButton = document.querySelector('#add-project-button');
 const addProjectDialog = document.querySelector('#add-project-dialog');
