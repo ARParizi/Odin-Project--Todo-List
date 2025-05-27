@@ -8,12 +8,6 @@ console.log("Hello World from the Todo List project.");
 // else
 //     console.log("We're in development mode.");
 
-const PRIORITY = Object.freeze({
-    LOW: 'LOW',
-    MEDIUM: 'MEDIUM',
-    HIGH: 'HIGH'
-});
-
 class TodoItem {
     constructor(title, description, date, priority, completed) {
         this.title       = title;
