@@ -46,6 +46,10 @@ main {
   background-color: hsl(210, 29%, 35%);
 }
 
+#project-list li.selected-project {
+  background-color: hsl(210, 29%, 45%);
+}
+
 .delete-project-button {
   position: absolute;
   right: 3px;

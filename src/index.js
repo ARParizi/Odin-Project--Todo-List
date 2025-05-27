@@ -34,15 +34,16 @@ let currentProjectId;
 const getCurrentProject = () => projectArray.getItemById(currentProjectId);
 
 changeCurrentProject(projectArray.getLastItem().id);
+
 function changeCurrentProject(newId) {
     currentProjectId = newId;
     const currentProjectHeading = document.querySelector('#current-project-heading');
     currentProjectHeading.textContent = getCurrentProject().title;
+    renderProjectList();
     renderTodoContainer();
 }
 
 
-renderProjectList();
 function renderProjectList(){
     const projectList = document.querySelector('#project-list');
     const projectArrayCopy = projectArray.getArray();
@@ -64,6 +65,10 @@ function renderProjectList(){
         newLi.appendChild(newBtn);
         newLi.setAttribute('data-id', projectArrayCopy[ii].id.toString());
         newLi.addEventListener('click', liClicked);
+
+        if(currentProjectId === projectArrayCopy[ii].id)
+            newLi.classList.add('selected-project');
+
         if (ii === 0)
             projectList.replaceChildren(newLi);
         else
