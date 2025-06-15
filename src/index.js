@@ -51,31 +51,31 @@ function renderProjectList(){
     if (projectArrayCopy.length === 0)
         projectList.replaceChildren('');
 
-    for (let ii = 0; ii < projectArrayCopy.length; ii++){
+    projectArrayCopy.forEach((element, index) => {
         const newLi   = document.createElement('li');
         const newBtn  = document.createElement('button');
         
-        newLi.textContent = projectArrayCopy[ii].title;
+        newLi.textContent = element.title;
         
         newBtn.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
         </svg>`;
         newBtn.type = 'button';
-        newBtn.setAttribute('data-id', projectArrayCopy[ii].id.toString());
+        newBtn.setAttribute('data-id', element.id.toString());
         newBtn.classList.add('delete-project-button');
         newBtn.addEventListener('click', deleteProjectClicked);
         newLi.appendChild(newBtn);
-        newLi.setAttribute('data-id', projectArrayCopy[ii].id.toString());
+        newLi.setAttribute('data-id', element.id.toString());
         newLi.addEventListener('click', liClicked);
 
-        if(currentProjectId === projectArrayCopy[ii].id)
+        if(currentProjectId === element.id)
             newLi.classList.add('selected-project');
 
-        if (ii === 0)
+        if (index === 0)
             projectList.replaceChildren(newLi);
         else
             projectList.appendChild(newLi);
-    }
+    });
 }
 
 function liClicked() {
@@ -160,37 +160,37 @@ function renderTodoContainer() {
     if (todoArray.length === 0)
         todoContainer.replaceChildren('');
 
-    for (let ii = 0; ii < todoArray.length; ii++){
+    todoArray.forEach((element, index) => {
         const newDiv    = document.createElement('div');
         const deleteBtn = document.createElement('button');
         
         newDiv.classList.add('todo-item');
         newDiv.textContent  = 'Title:  ';
-        newDiv.textContent += todoArray[ii].title;
+        newDiv.textContent += element.title;
         newDiv.textContent += '\nDescription:  ';
-        newDiv.textContent += todoArray[ii].description;
+        newDiv.textContent += element.description;
         newDiv.textContent += '\nDue Date:  ';
-        newDiv.textContent += todoArray[ii].date;
+        newDiv.textContent += element.date;
         newDiv.textContent += '\nPriority:  ';
-        newDiv.textContent += todoArray[ii].priority;
+        newDiv.textContent += element.priority;
         newDiv.textContent += '\nCompleted:  ';
-        newDiv.textContent += todoArray[ii].completed;
+        newDiv.textContent += element.completed;
         newDiv.textContent += '\n';
         
         deleteBtn.innerHTML = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
         </svg>`;
         deleteBtn.type = 'button';
-        deleteBtn.setAttribute('data-id', todoArray[ii].id.toString());
+        deleteBtn.setAttribute('data-id', element.id.toString());
         deleteBtn.classList.add('delete-todo-button');
         deleteBtn.addEventListener('click', deleteTodoClicked);
         newDiv.appendChild(deleteBtn);
 
-        if (ii === 0)
+        if (index === 0)
             todoContainer.replaceChildren(newDiv);
         else
             todoContainer.appendChild(newDiv);
-    }
+    });
 }
 
 function deleteTodoClicked() {
