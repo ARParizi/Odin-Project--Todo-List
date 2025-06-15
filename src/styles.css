@@ -54,7 +54,23 @@ main {
   position: absolute;
   right: 3px;
   bottom: 3px;
-  font-size: 1.0em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-project-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #ff6b6b;
+}
+
+.delete-project-button:hover svg {
+  fill: #ff5252;
 }
 
 #add-project-button-container {
@@ -88,8 +104,26 @@ main {
 }
 
 .delete-todo-button {
-  font-size: 1.0em;
-  padding: 4px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.delete-todo-button svg {
+  width: 20px;
+  height: 20px;
+  fill: #ff6b6b;
+}
+
+.delete-todo-button:hover svg {
+  fill: #ff5252;
 }
 
 #add-todo-button:hover {
@@ -106,10 +140,9 @@ main {
 }
 
 .todo-item {
+  position: relative;
   white-space: pre-line;
   background-color: lightgray;
-  /* width: 200px; */
-  /* height: 200px; */
   overflow: auto;
   padding: 10px;
   border-left: solid 10px lightcoral;
